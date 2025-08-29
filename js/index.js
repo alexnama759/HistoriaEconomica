@@ -64,3 +64,21 @@ document.getElementById('prev').onclick = ()=>slide(-1);
 document.getElementById('next').onclick = ()=>slide(1);
 
 window.addEventListener('resize', ()=>slide(0));
+
+const buscador = document.getElementById("buscador");
+if(buscador){
+  buscador.addEventListener("input", e=>{
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll(".glosario-lista > div").forEach(item=>{
+      const txt = item.innerText.toLowerCase();
+      item.style.display = txt.includes(term) ? "block" : "none";
+    });
+  });
+}
+
+document.querySelectorAll(".figura-card").forEach(card=>{
+  card.addEventListener("click", ()=>{
+    const id = card.getAttribute("data-id");
+    location.href = `figura.html?id=${id}`;
+  });
+});
